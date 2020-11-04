@@ -30,16 +30,52 @@ http://youtu.be/7s9JePSln-M
 }
 ```
 
-Installation
-============
+# Installation (Ubuntu 20 LTS)
 
-    $ git clone https://github.com/tum-vision/fastfusion.git`
+`sudo apt-get install libopencv-dev libboost-all-dev libeigen3-dev libglew-dev freeglut3-dev qmake`
 
-    $ cd fastfusion
-  
-    $ cmake .
+## QT4
 
-    $ make
+```
+sudo add-apt-repository ppa:rock-core/qt4
+sudo apt update
+sudo apt install libqt4-dev
+```
+
+## QGLViewer
+`sudo apt install libqglviewer-dev-qt5` [libqglviewer-dev-qt5](https://packages.ubuntu.com/focal/amd64/libqglviewer-dev-qt5/download)
+Download and install [libqglviewer2-qt4](https://packages.ubuntu.com/bionic/amd64/libqglviewer2-qt4/download) package
+
+### Opencv-2.4
+```
+wget https://github.com/opencv/opencv/archive/2.4.13.6.zip -O opencv-2.4.13.6.zip
+unzip opencv-2.4.13.6.zip
+cd opencv-2.4.13.6
+mkdir release
+cd release
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+make
+sudo make install
+```
+
+If not working, [read doc](https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html#linux-installation)
+
+if err, in `modules/highgui/src/cap_ffmpeg_impl.hpp` add at the beginning
+```
+#define AV_CODEC_FLAG_GLOBAL_HEADER (1 << 22)
+#define CODEC_FLAG_GLOBAL_HEADER AV_CODEC_FLAG_GLOBAL_HEADER
+#define AVFMT_RAWPICTURE 0x0020
+```
+
+## Fastfusion
+```
+git clone https://github.com/remmel/fastfusion.git
+cd fastfusion
+cmake .
+make
+```
+
+Open with codeblocks: `cmake . -G"CodeBlocks - Unix Makefiles"`
 
 Preparation of the data
 ======================
@@ -76,9 +112,9 @@ camera poses, the depth image list and the color image list into a single file:
 
     $ cd ~/fastfusion/
 
-    $ ./associate.py ~/data/rgbd_dataset_freiburg3_long_office_household/groundtruth.txt ~/data/rgbd_dataset_freiburg3_long_office_household/depth.txt > tmp.txt
+    $ python2.7 associate.py ~/data/rgbd_dataset_freiburg3_long_office_household/groundtruth.txt ~/data/rgbd_dataset_freiburg3_long_office_household/depth.txt > tmp.txt
 
-    $ ./associate.py tmp.txt ~/data/rgbd_dataset_freiburg3_long_office_household/rgb.txt > ~/data/rgbd_dataset_freiburg3_long_office_household/associate.txt
+    $ python2.7 associate.py tmp.txt ~/data/rgbd_dataset_freiburg3_long_office_household/rgb.txt > ~/data/rgbd_dataset_freiburg3_long_office_household/associate.txt
 
 The resulting text file should look as follows:
 
@@ -183,4 +219,5 @@ Where:
      The File Names
 ```
 ![alt tag](http://vision.in.tum.de/_media/data/software/screenshot_fastfusion.png)
+
 
