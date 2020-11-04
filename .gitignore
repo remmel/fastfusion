@@ -21,3 +21,8 @@ _deps
 /src/moc_onlinefusionviewer.cxx_parameters
 /src/moc_onlinefusionviewer.cxx
 /Project.cbp
+/build/
+/.cproject
+/.project
+/Project.layout
+/.settings

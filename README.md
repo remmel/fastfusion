@@ -46,26 +46,8 @@ sudo apt install libqt4-dev
 `sudo apt install libqglviewer-dev-qt5` [libqglviewer-dev-qt5](https://packages.ubuntu.com/focal/amd64/libqglviewer-dev-qt5/download)
 Download and install [libqglviewer2-qt4](https://packages.ubuntu.com/bionic/amd64/libqglviewer2-qt4/download) package
 
-### Opencv-2.4
-```
-wget https://github.com/opencv/opencv/archive/2.4.13.6.zip -O opencv-2.4.13.6.zip
-unzip opencv-2.4.13.6.zip
-cd opencv-2.4.13.6
-mkdir release
-cd release
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
-make
-sudo make install
-```
-
-If not working, [read doc](https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html#linux-installation)
-
-if err, in `modules/highgui/src/cap_ffmpeg_impl.hpp` add at the beginning
-```
-#define AV_CODEC_FLAG_GLOBAL_HEADER (1 << 22)
-#define CODEC_FLAG_GLOBAL_HEADER AV_CODEC_FLAG_GLOBAL_HEADER
-#define AVFMT_RAWPICTURE 0x0020
-```
+### OpenCV-4.2
+`sudo apt-get install libopencv-dev`
 
 ## Fastfusion
 ```
