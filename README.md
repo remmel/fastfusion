@@ -32,22 +32,23 @@ http://youtu.be/7s9JePSln-M
 
 # Installation (Ubuntu 20 LTS)
 
-`sudo apt-get install libopencv-dev libboost-all-dev libeigen3-dev libglew-dev freeglut3-dev qmake`
+`sudo apt install build-essential cmake libopencv-dev libboost-all-dev libeigen3-dev libglew-dev freeglut3-dev`
 
 ## QT4
+
+As Ubuntu 20 dropped qt4 dependencies in its repos, use rock-core repos :
 
 ```
 sudo add-apt-repository ppa:rock-core/qt4
 sudo apt update
 sudo apt install libqt4-dev
 ```
+(If Ubuntu 20.10 you might found qt4 via `sudo add-apt-repository ppa:gezakovacs/ppa`)
 
 ## QGLViewer
-`sudo apt install libqglviewer-dev-qt5` [libqglviewer-dev-qt5](https://packages.ubuntu.com/focal/amd64/libqglviewer-dev-qt5/download)
-Download and install [libqglviewer2-qt4](https://packages.ubuntu.com/bionic/amd64/libqglviewer2-qt4/download) package
-
-### OpenCV-4.2
-`sudo apt-get install libopencv-dev`
+Download and install packages :
+- [libqglviewer2-qt4](https://packages.ubuntu.com/bionic/amd64/libqglviewer2-qt4/download)
+- [libqglviewer-dev-qt4](https://packages.ubuntu.com/bionic/amd64/libqglviewer-dev-qt4/download)
 
 ## Fastfusion
 ```
@@ -92,15 +93,15 @@ Now we need to generate the text file. For this, we use the associate.py tool fr
 the RGB-D benchmark website. We need to run it twice, as we join the
 camera poses, the depth image list and the color image list into a single file:
 
-    $ cd ~/fastfusion/
-
-    $ python2.7 associate.py ~/data/rgbd_dataset_freiburg3_long_office_household/groundtruth.txt ~/data/rgbd_dataset_freiburg3_long_office_household/depth.txt > tmp.txt
-
-    $ python2.7 associate.py tmp.txt ~/data/rgbd_dataset_freiburg3_long_office_household/rgb.txt > ~/data/rgbd_dataset_freiburg3_long_office_household/associate.txt
+    $ sudo apt install python3 python3-pip
+    $ pip3 install numpy
+    $ cd ~/data/rgbd_dataset_freiburg3_long_office_household/
+    $ python3 ~/fastfusion/associate.py groundtruth.txt depth.txt > tmp.txt
+    $ python3 ~/fastfusion/associate.py tmp.txt rgb.txt > associate.txt
 
 The resulting text file should look as follows:
 
-    $ head ~/data/rgbd_dataset_freiburg3_long_office_household/associate.txt
+    $ head associate.txt
 
 ```
 1341847980.790000 -0.6832 2.6909 1.7373 0.0003 0.8617 -0.5072 -0.0145 1341847980.786879 depth/1341847980.786879.png 1341847980.786856 rgb/1341847980.786856.png
