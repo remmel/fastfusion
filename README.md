@@ -82,11 +82,8 @@ For simplicity, we take a pre-recorded sequence from the TUM
 RGB-D benchmark.
 
     $ mkdir ~/data
-
     $ cd ~/data
-
     $ wget http://vision.in.tum.de/rgbd/dataset/freiburg3/rgbd_dataset_freiburg3_long_office_household.tgz
-
     $ tar xvzf rgbd_dataset_freiburg3_long_office_household.tgz
 
 Now we need to generate the text file. For this, we use the associate.py tool from
@@ -203,4 +200,22 @@ Where:
 ```
 ![alt tag](http://vision.in.tum.de/_media/data/software/screenshot_fastfusion.png)
 
+UI Options:
+- S : Start/Stop/Resume fusion
+- N : Add stop?
+- G : Fusion next frame
+- Left : Previous frame
+- Right : Next frame
+- W : Write Mesh (.ply)
+- F : Save Snapshot
+- O : Resize window
+- L : Light on/off
+- C : Color on/off
+- K : Show depth
+- P : Mode Faces/WireFrame/Points
+- D : Save Debug images
+
+
+- Depth image and rgb image must have same resolution and same intrinsics
+- Enlarging depth png to get a better resolution rgb jpg doesn't change anything
 

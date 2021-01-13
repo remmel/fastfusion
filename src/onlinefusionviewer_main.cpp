@@ -256,6 +256,11 @@ int main(int argc, char *argv[])
   	}
   }
 
+  float hfov = atan2(cx, fx)*180/M_PI*2;
+  float vfov = atan2(cy, fy)*180/M_PI*2;
+
+  fprintf(stderr,"\nCamera rgbd : hfov:%.1f° vfov:%.1f° fx:%.1f fy:%.1f cx:%.1f cy:%.1f",hfov, vfov, fx,fy,cx,cy);
+
   if(threadMeshing) fprintf(stderr,"\nMeshing will run in a separate Thread");
   else              fprintf(stderr,"\nMeshing will NOT run in a separate Thread");
   if(threadFusion)  fprintf(stderr,"\nFusion will run in a separate Thread");
