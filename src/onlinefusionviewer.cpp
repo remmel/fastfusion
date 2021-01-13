@@ -382,7 +382,6 @@ void OnlineFusionViewerManipulated::drawCameraFrustum
   glColor3f(1,0,0);
   glBegin(GL_LINES);
 
-//  double px = (0.0 - cx); double py = (0.0 - cy); double pz = fx;
   double px = (0.0 - cx)/fx; double py = (0.0 - cy)/fx; double pz = 1.0f;
   double qx = r11*px + r12*py + r13*pz;
   double qy = r21*px + r22*py + r23*pz;
@@ -390,24 +389,21 @@ void OnlineFusionViewerManipulated::drawCameraFrustum
   glVertex3f(tx,ty,tz);
   glVertex3f(qx+tx,qy+ty,qz+tz);
 
-//  px = (640.0 - cx); py = (0.0f - cy); pz = fx;
-  px = (640.0 - cx)/fx; py = (0.0f - cy)/fx; pz = 1.0f;
+  px = cx/fx; py = (0.0f - cy)/fx; pz = 1.0f;
   qx = r11*px + r12*py + r13*pz;
   qy = r21*px + r22*py + r23*pz;
   qz = r31*px + r32*py + r33*pz;
   glVertex3f(tx,ty,tz);
   glVertex3f(qx+tx,qy+ty,qz+tz);
 
-//  px = (640.0 - cx); py = (480.0 - cy); pz = fx;
-  px = (640.0 - cx)/fx; py = (480.0 - cy)/fx; pz = 1.0f;
+  px = cx/fx; py = cy/fx; pz = 1.0f;
   qx = r11*px + r12*py + r13*pz;
   qy = r21*px + r22*py + r23*pz;
   qz = r31*px + r32*py + r33*pz;
   glVertex3f(tx,ty,tz);
   glVertex3f(qx+tx,qy+ty,qz+tz);
 
-//  px = (0.0 - cx); py = (480.0 - cy); pz = fx;
-  px = (0.0 - cx)/fx; py = (480.0 - cy)/fx; pz = 1.0f;
+  px = (0.0 - cx)/fx; py = cy/fx; pz = 1.0f;
   qx = r11*px + r12*py + r13*pz;
   qy = r21*px + r22*py + r23*pz;
   qz = r31*px + r32*py + r33*pz;
@@ -1111,7 +1107,7 @@ void OnlineFusionViewerManipulated::updateSlot()
 	else{
 		if(_currentFrame<_nextStopFrame) {
 			_currentFrame++;
-			fprintf(stderr,"\nFrame %li of %li",_currentFrame,_nextStopFrame);
+			fprintf(stderr,"\n_Frame %li of %li",_currentFrame,_nextStopFrame);
 			if(_currentTrajectory<(long long)_depthNames.size()-1){
 				_currentTrajectory++;
 				fprintf(stderr,"\nSet Trajectory to %li",_currentTrajectory);
