@@ -219,3 +219,5 @@ UI Options:
 - Depth image and rgb image must have same resolution and same intrinsics
 - Enlarging depth png to get a better resolution rgb jpg doesn't change anything
 
+I forked that project in order to use FastFusion reconstruction algo with the rgbd images provided by AREngine on my Honor View 20 using my [RGBD Recorder](https://github.com/remmel/hms-AREngine-demo).
+

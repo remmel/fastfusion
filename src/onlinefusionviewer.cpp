@@ -1107,7 +1107,7 @@ void OnlineFusionViewerManipulated::updateSlot()
 	else{
 		if(_currentFrame<_nextStopFrame) {
 			_currentFrame++;
-			fprintf(stderr,"\n_Frame %li of %li",_currentFrame,_nextStopFrame);
+			fprintf(stderr,"\nFrame %li of %li",_currentFrame,_nextStopFrame);
 			if(_currentTrajectory<(long long)_depthNames.size()-1){
 				_currentTrajectory++;
 				fprintf(stderr,"\nSet Trajectory to %li",_currentTrajectory);
@@ -1121,6 +1121,8 @@ void OnlineFusionViewerManipulated::updateSlot()
 						fprintf(stderr," %li",_currentFrame);
 						cv::Mat depthimage = cv::imread(_depthNames[_currentTrajectory][_currentFrame],-1);
 						cv::Mat rgbimage = cv::imread(_rgbNames[_currentTrajectory][_currentFrame]);
+						if(depthimage.rows != rgbimage.rows || depthimage.cols != rgbimage.cols)
+                            fprintf(stderr,"\nRGB and Depth are expecting to have same resolution RGB(%dx%d) D(%dx%d)", rgbimage.cols, rgbimage.rows, depthimage.cols, depthimage.rows);
 
 #ifdef PREPROCESS_IMAGES
 						depthimage.convertTo(depthimage,CV_32FC1,1/(_imageDepthScale));

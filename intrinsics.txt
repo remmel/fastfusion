@@ -1,0 +1,14 @@
+179  0 120   0 179  90.5   # Honor View 20 240x180 (/6) / 67.7°x53.6°
+477  0 320   0 478  241    # Honor View 20 640x480 (/2.25) / 67.7°x53.5°
+525  0 319.5 0 525  239.5  # Kinect 640x480 rgbd / 62.6°x49.0°
+1073 0 719   0 1076 543    # Honor View 20 1440x1080 / 67.7°x53.6°
+239  0 90    0 239  160    # Honor View 20 180x320 Lubos / 41.3°x67.6° ?
+
+#fx  0 cx    0 fy   cy
+# Only first line is taken into account.
+# Depth and Rgb images must have same resolutions and intrinsics
+# `./bin/onlinefusion  --intrinsics intrinsics.txt`
+
+Bulk resize:
+`sudo apt install imagemagick`
+`mogrify -resize 180x320 -path resized180 *.jpg`
